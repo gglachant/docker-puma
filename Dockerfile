@@ -8,9 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 #RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-RUN apt-get -qy update
-
-RUN apt-get -qy install apt-utils ca-certificates sudo curl git-core
+RUN apt-get -qy update && apt-get -qy install apt-utils ca-certificates curl git-core sudo && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN dpkg-divert --local --rename --add /sbin/initctl
 RUN ln -sf /bin/true /sbin/initctl
